@@ -17,16 +17,13 @@ interface Product {
 }
 
 export default function DecentralizedMarketplace() {
-  const {
-    data: products,
-    isError,
-    isLoading,
-  } = useContractRead({
+  const { data, isLoading } = useContractRead({
     address: import.meta.env.VITE_CONTRACT_ADDRESS,
     abi: abi,
     functionName: "getActiveProducts",
   });
 
+  const products: Product[] = (data as Product[]) || [];
   console.log("products", products);
 
   return (

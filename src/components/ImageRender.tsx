@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const UNSPLASH_API_KEY = "ii_2Sf80VE_Cr9UU-tkLax99AlEi84MI_sExEINLV5Y";
+const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
 
 interface UnsplashImageProps {
   productName: string;
@@ -16,7 +16,7 @@ const UnsplashImage = ({ productName, altText }: UnsplashImageProps) => {
       const query = `${productName} vegetable image`;
       try {
         const response = await axios.get(
-          `https://api.unsplash.com/search/photos?query=${query}&client_id=ii_2Sf80VE_Cr9UU-tkLax99AlEi84MI_sExEINLV5Y`
+          `https://api.unsplash.com/search/photos?query=${query}&client_id=${UNSPLASH_API_KEY}`
         );
         const image = response.data.results[0]?.urls.raw;
         if (image) {

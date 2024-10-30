@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@nextui-org/button";
 import { Select, SelectItem, SelectSection } from "@nextui-org/select";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/card";
@@ -14,7 +14,6 @@ import UnsplashImage from "@/components/ImageRender";
 import toast from "react-hot-toast";
 import {
   useAccount,
-  useConnect,
   useContractRead,
   useContractWrite,
   usePrepareContractWrite,
@@ -37,7 +36,6 @@ console.log(contractABI);
 export default function ProductSection() {
   const {
     data: product = [],
-    isError,
     isLoading,
   }: {
     data: Product[] | undefined;
@@ -49,9 +47,11 @@ export default function ProductSection() {
     functionName: "getActiveProducts",
   });
   // const { setAllProducts, getAllProducts } = useAppStore();
-  const [priceRange, setPriceRange] = useState([0, 10]);
+  const [priceRange] = useState([0, 10]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("name");
+
+  console.log(selectedCategory, sortBy);
 
   const buyProduct = async (product: Product) => {
     const { isConnected } = useAccount(); // Check if the user is connected
@@ -72,7 +72,7 @@ export default function ProductSection() {
       },
     });
 
-    const { write, isLoading, isSuccess } = useContractWrite(config);
+    const { write } = useContractWrite(config);
 
     // Call the write function to buy the product
     if (write) {
@@ -177,7 +177,7 @@ export default function ProductSection() {
                 <p className="text-sm text-gray-500">
                   {product?.length} products found
                 </p>
-                <Select onSelect={(value) => setSortBy("")} className="w-1/3">
+                <Select onSelect={() => setSortBy("")} className="w-1/3">
                   <SelectSection>
                     <SelectItem key={"1"} value="name">
                       Name

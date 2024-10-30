@@ -12,7 +12,6 @@ import {
   darkTheme,
   getDefaultWallets,
   RainbowKitProvider,
-  AvatarComponent,
 } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";

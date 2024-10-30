@@ -1,4 +1,4 @@
-import { Link } from "@nextui-org/link";
+
 
 import { Navbar } from "@/components/navbar";
 import { IconShoppingBag } from "@tabler/icons-react";
