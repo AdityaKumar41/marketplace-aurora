@@ -15,7 +15,6 @@ dist-ssr
 .env
 .env.local
 
-/src/abi.json
 
 # Editor directories and files
 .vscode/*
