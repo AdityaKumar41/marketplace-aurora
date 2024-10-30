@@ -19,6 +19,7 @@ import {
   useContractWrite,
   usePrepareContractWrite,
 } from "wagmi";
+import { ethers } from "ethers";
 
 declare global {
   interface Window {
@@ -218,7 +219,7 @@ export default function ProductSection() {
                       </CardBody>
                       <CardFooter className="flex justify-between items-stretch flex-col">
                         <span className="text-lg font-bold my-4">
-                          {product.price} AVAX
+                          {ethers.utils.formatEther(product.price)} ETH
                         </span>
                         <Button size="sm" onClick={() => buyProduct(product)}>
                           <IconShoppingCart className="w-4 h-4 mr-2" />

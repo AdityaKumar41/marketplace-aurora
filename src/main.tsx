@@ -31,7 +31,7 @@ const metadata = {
 
 const { connectors } = getDefaultWallets({
   appName: "Farmer-Marketplace",
-  projectId: `d5d80d9e0a6195ffa06190a916a11629`,
+  projectId: import.meta.env.VITE_PROJECT_ID,
   chains,
 });
 
@@ -44,29 +44,29 @@ const wagmiConfig = createConfig({
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  // <React.StrictMode>
-  <BrowserRouter>
-    <Provider>
-      <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider
-          chains={chains}
-          theme={darkTheme()}
-          appInfo={metadata}
-          avatar={() => (
-            <img
-              src="https://api.dicebear.com/9.x/pixel-art/svg"
-              alt="avatar"
-            />
-          )}
-        >
-          <QueryClientProvider client={queryClient}>
-            <App />
-            <Toaster />
-            <ReactQueryDevtools />
-          </QueryClientProvider>
-        </RainbowKitProvider>
-      </WagmiConfig>
-    </Provider>
-  </BrowserRouter>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider>
+        <WagmiConfig config={wagmiConfig}>
+          <RainbowKitProvider
+            chains={chains}
+            theme={darkTheme()}
+            appInfo={metadata}
+            avatar={() => (
+              <img
+                src="https://api.dicebear.com/9.x/pixel-art/svg"
+                alt="avatar"
+              />
+            )}
+          >
+            <QueryClientProvider client={queryClient}>
+              <App />
+              <Toaster />
+              <ReactQueryDevtools />
+            </QueryClientProvider>
+          </RainbowKitProvider>
+        </WagmiConfig>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
 );

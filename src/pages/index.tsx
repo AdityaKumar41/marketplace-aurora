@@ -18,7 +18,7 @@ interface Product {
 
 export default function DecentralizedMarketplace() {
   const {
-    data: product,
+    data: products,
     isError,
     isLoading,
   } = useContractRead({
@@ -27,7 +27,7 @@ export default function DecentralizedMarketplace() {
     functionName: "getActiveProducts",
   });
 
-  console.log("product", product);
+  console.log("products", products);
 
   return (
     <DefaultLayout>
@@ -61,7 +61,7 @@ export default function DecentralizedMarketplace() {
               </h2>
               {!isLoading ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {product?.getAllProducts?.slice(0, 4).map((i: Product) => (
+                  {products?.slice(0, 4).map((i: Product) => (
                     <Card key={i.id}>
                       <CardHeader>
                         <UnsplashImage productName={i.name} altText={i.name} />
@@ -74,7 +74,7 @@ export default function DecentralizedMarketplace() {
                       </CardBody>
                       <CardFooter className="flex justify-between items-stretch flex-col">
                         <span className="font-bold">
-                          {ethers.utils.formatEther(i.price)} AVAX
+                          {ethers.utils.formatEther(i.price)} ETH
                         </span>
                         <Link to={"/product"}>
                           {" "}
